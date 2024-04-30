@@ -12,7 +12,7 @@ def get_power_series(n):
     coefficients = get_coefficients(n)
     return lambda x: array([ak*x**k for k,ak in enumerate(coefficients)]).sum(axis=0)
 
-def plot_series_approximations(x,y_exact=None,k0=0,L=-5,U=5):
+def plot_series_approximations(a,x,y_exact=None,k0=0,L=-5,U=5):
     
     # This function plots 9 different series approximations
     
