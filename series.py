@@ -2,14 +2,14 @@ from numpy import *
 from scipy.special import factorial
 import matplotlib.pyplot as plt
 
-def get_coefficients(n):
+def get_coefficients(a,n):
     # This function computes the coefficients a_0,a_1,...,a_n
     # of a power series
     return array([a(k) for k in range(n+1)])
 
-def get_power_series(n):
+def get_power_series(a,n):
     # This function constructs a series approximation of degree n
-    coefficients = get_coefficients(n)
+    coefficients = get_coefficients(a,n)
     return lambda x: array([ak*x**k for k,ak in enumerate(coefficients)]).sum(axis=0)
 
 def plot_series_approximations(a,x,y_exact=None,k0=0,L=-5,U=5):
@@ -29,7 +29,7 @@ def plot_series_approximations(a,x,y_exact=None,k0=0,L=-5,U=5):
     fig,axes = plt.subplots(nrows=3,ncols=3,figsize=(10,10))
 
     for k,ax in enumerate(axes.flatten()):
-        power_series = get_power_series(k+k0)
+        power_series = get_power_series(a,k+k0)
         y = power_series(x)
         ax.plot(x,y,'C{:}'.format(k),linewidth=3)
         if y_exact is not None: ax.plot(x,y_exact,'k--',linewidth=2)
